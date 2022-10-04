@@ -21,7 +21,7 @@ export function Practical03Page() {
       <BodyBackground bg="gray.100" />
       <Heading pb="4">Practical 03</Heading>
 
-      <Stack>
+      <Stack spacing="8" divider={<StackDivider borderColor="gray.300" />}>
         <SettingsSection
           title="Profile"
           description="This is your profile information."
@@ -39,12 +39,27 @@ export function Practical03Page() {
             },
           }}
         >
-          <Select>
+          <Stack direction={{ base: 'column', sm: 'row' }}>
+            <FormField name="firstName" label="First name" />
+            <FormField name="lastName" label="Last name" />
+          </Stack>
+          <FormField name="username" label="User name" maxW="md" />
+          <FormField
+            name="email"
+            label="Email address"
+            type="email"
+            maxW="md"
+          />
+          <FormField as={Textarea} name="about" label="Profile bio" />
+          <FormField as={Select} name="visibility" label="Profile visibility">
             <option value="public">Public</option>
             <option value="friends">Only friends</option>
             <option value="private">Private</option>
-          </Select>
-          <Switch> Agree to Terms and Conditions</Switch>
+          </FormField>
+          <FormField name="agreeToc" as={Switch} variant="unstyled">
+            {' '}
+            Agree to Terms and Conditions
+          </FormField>
         </SettingsSection>
         <SettingsSection
           title="Notifications"
@@ -58,15 +73,19 @@ export function Practical03Page() {
             },
           }}
         >
-          <RadioGroup>
+          <FormField
+            name="notificationsLevel"
+            as={RadioGroup}
+            variant="unstyled"
+          >
             <Heading as="h5">Notify me</Heading>
             <Paragraph>When you should be notified:</Paragraph>
-            <Stack>
+            <Stack pl="4">
               <Radio value="all">Every time someone quacks</Radio>
               <Radio value="mentions">Only mentions (@username)</Radio>
               <Radio value="never">Never</Radio>
             </Stack>
-          </RadioGroup>
+          </FormField>
         </SettingsSection>
       </Stack>
     </>
