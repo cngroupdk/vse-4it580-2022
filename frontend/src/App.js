@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 
-import { ChakraProvider } from 'src/shared/design-system';
+import { CustomChakraProvider } from 'src/shared/design-system';
 import { ScrollToTop } from 'src/shared/navigation';
 
 import { AuthProvider } from 'src/modules/auth';
@@ -10,7 +10,7 @@ import { Routes } from 'src/Routes';
 
 export function App() {
   return (
-    <ChakraProvider>
+    <CustomChakraProvider>
       <BrowserRouter>
         <AuthProvider>
           <EnhancedApolloProvider>
@@ -19,6 +19,6 @@ export function App() {
           </EnhancedApolloProvider>
         </AuthProvider>
       </BrowserRouter>
-    </ChakraProvider>
+    </CustomChakraProvider>
   );
 }

@@ -37,4 +37,5 @@ export { Icon } from './Icon';
 export { Link } from './Link';
 export { NavLink } from './NavLink';
 export { Paragraph } from './Paragraph';
+export { Star } from './Star';
 export { TransparentButton } from './TransparentButton';

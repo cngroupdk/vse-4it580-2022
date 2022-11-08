@@ -1,0 +1,30 @@
+import {
+  Button,
+  Checkbox,
+  Heading,
+  Radio,
+  Stack,
+  Star,
+  StarRating,
+} from 'src/shared/design-system';
+
+export function Practical08Page() {
+  return (
+    <Stack maxW="xl" mx="auto" alignItems="flex-start">
+      <Heading pb="4">Theme</Heading>
+
+      <Button>Button</Button>
+      <Button variant="subtle">Subtle Button</Button>
+
+      <Radio isChecked={true}>Hello</Radio>
+      <Checkbox isChecked={true}>Hello</Checkbox>
+
+      <Star isActive={false} />
+      <Star isActive={true} />
+
+      <StarRating rating={4} size="lg" colorScheme="red" />
+      <StarRating rating={3} size="md" />
+      <StarRating rating={2} stars={3} size="sm" />
+    </Stack>
+  );
+}

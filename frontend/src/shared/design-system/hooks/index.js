@@ -1,1 +1,6 @@
-export { useDisclosure, useToken } from '@chakra-ui/react';
+export {
+  useDisclosure,
+  useToken,
+  useStyleConfig,
+  useMultiStyleConfig,
+} from '@chakra-ui/react';

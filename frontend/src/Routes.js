@@ -9,6 +9,7 @@ import {
   Practical01Page,
   Practical02Page,
   Practical03Page,
+  Practical08Page,
 } from 'src/modules/static-pages';
 
 export const route = {
@@ -27,6 +28,15 @@ export const PRACTICALS = [
   {
     id: '03',
     PageComponent: Practical03Page,
+    wrapperProps: {
+      maxW: '80rem',
+      minW: 'none',
+      w: '100%',
+    },
+  },
+  {
+    id: '08',
+    PageComponent: Practical08Page,
     wrapperProps: {
       maxW: '80rem',
       minW: 'none',
