@@ -6,4 +6,5 @@ export {
   FaTrash as DeleteIcon,
   FaStar as StarActive,
   FaRegStar as StarInactive,
+  FaArrowRight as LinkIcon,
 } from 'react-icons/fa';

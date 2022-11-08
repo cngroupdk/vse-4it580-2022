@@ -7,14 +7,24 @@ import {
   Star,
   StarRating,
 } from 'src/shared/design-system';
+import { FeatureWitSideBySideImage } from '../organisms';
 
 export function Practical08Page() {
   return (
     <Stack maxW="xl" mx="auto" alignItems="flex-start">
-      <Heading pb="4">Theme</Heading>
+      <FeatureWitSideBySideImage />
 
-      <Button>Button</Button>
-      <Button variant="subtle">Subtle Button</Button>
+      <Heading pb="4" pt="40">
+        Theme
+      </Heading>
+
+      <Button colorScheme="purple">Button</Button>
+      <Button variant="subtle" colorScheme="blue">
+        Subtle Button
+      </Button>
+      <Button variant="subtle" colorScheme="purple">
+        Subtle Button
+      </Button>
 
       <Radio isChecked={true}>Hello</Radio>
       <Checkbox isChecked={true}>Hello</Checkbox>

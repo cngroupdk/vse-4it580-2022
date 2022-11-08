@@ -20,6 +20,7 @@ export {
   Radio,
   RadioGroup,
   Select,
+  Square,
   Spacer,
   Stack,
   StackDivider,

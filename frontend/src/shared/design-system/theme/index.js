@@ -19,10 +19,22 @@ export const theme = extendTheme(
         800: '#37473b',
         900: '#202420',
       },
+      purple: {
+        50: '#f9dff3',
+        100: '#f4c0e7',
+        200: '#e881d0',
+        300: '#dd42b8',
+        400: '#b42091',
+        500: '#75155e',
+        600: '#5e114b',
+        700: '#460d38',
+        800: '#2f0826',
+        900: '#170413',
+      },
     },
     components: {
       ...components,
     },
   },
-  withDefaultColorScheme({ colorScheme: 'quacker' }),
+  withDefaultColorScheme({ colorScheme: 'blue' }),
 );
