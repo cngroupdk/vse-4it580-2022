@@ -10,6 +10,7 @@ import {
   Practical02Page,
   Practical03Page,
   Practical08Page,
+  Practical11Page,
 } from 'src/modules/static-pages';
 
 export const route = {
@@ -43,6 +44,7 @@ export const PRACTICALS = [
       w: '100%',
     },
   },
+  { id: '11', PageComponent: Practical11Page },
 ];
 
 export function Routes() {

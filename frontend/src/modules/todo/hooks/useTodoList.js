@@ -19,47 +19,11 @@ const initialItems = [
 ];
 
 export function useTodoList() {
-  const [todoState, setTodoState] = useState({
+  const [{ filter, items }, setTodoState] = useState({
     filter: 'all',
     items: initialItems,
     nextId: initialItems.length + 1,
   });
-
-  const addItem = (name) => {
-    setTodoState((prevState) => {
-      const { nextId } = prevState;
-
-      return {
-        ...prevState, // Set all previous state
-        items: [
-          ...prevState.items, // Insert all existing items
-          {
-            id: nextId,
-            name,
-          },
-        ],
-        nextId: nextId + 1, // Increment ID for next time an item is added
-      };
-    });
-  };
-
-  const setItemCompleted = (id, isCompleted) => {
-    setTodoState((prevState) => ({
-      ...prevState, // Set all previous state (`nextId` will remain unchanged)
-      items: prevState.items.map((item) => {
-        // Change only the item that was clicked
-        if (item.id === id) {
-          return {
-            ...item,
-            isCompleted,
-          };
-        }
-
-        // Do nothing with the rest of the items
-        return item;
-      }),
-    }));
-  };
 
   const setFilter = (filter) => {
     setTodoState((prevState) => ({
@@ -68,11 +32,76 @@ export function useTodoList() {
     }));
   };
 
+  const addItem = (name) => {
+    setTodoState((prevState) => {
+      const { nextId } = prevState;
+
+      return {
+        ...prevState,
+        items: [
+          {
+            id: nextId,
+            name,
+          },
+          ...prevState.items,
+        ],
+        nextId: nextId + 1,
+      };
+    });
+  };
+
+  const setItemCompleted = (id, isCompleted) => {
+    setTodoState((prevState) => ({
+      ...prevState,
+      items: prevState.items.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            isCompleted,
+          };
+        }
+
+        return item;
+      }),
+    }));
+  };
+
+  const deleteItem = (id) => {
+    setTodoState((prevState) => ({
+      ...prevState,
+      items: prevState.items.filter((item) => item.id !== id),
+    }));
+  };
+
+  const filteredItems = items.filter((item) => {
+    console.time(`filter item ${item.id}`);
+    let startTime = performance.now();
+    while (performance.now() - startTime < 100) {
+      // Do nothing for 100 ms to emulate extremely slow code
+    }
+    console.timeEnd(`filter item ${item.id}`);
+
+    switch (filter) {
+      case 'all':
+        return true;
+
+      case 'completed':
+        return item.isCompleted;
+
+      case 'not-completed':
+        return !item.isCompleted;
+
+      default:
+        return true;
+    }
+  });
+
   return {
-    filter: todoState.filter,
-    items: todoState.items,
+    filter,
+    setFilter,
+    items: filteredItems,
     addItem,
     setItemCompleted,
-    setFilter,
+    deleteItem,
   };
 }
