@@ -1,3 +1,6 @@
+import { memo } from 'react';
+import { motion } from 'framer-motion';
+
 import {
   Checkbox,
   IconButton,
@@ -6,32 +9,42 @@ import {
   Stack,
 } from 'src/shared/design-system';
 
-export function TodoListItem({ item, onSetCompleted, onDelete }) {
+export const TodoListItem = memo(function TodoListItem({
+  item,
+  onSetCompleted,
+  onDelete,
+}) {
   return (
-    <Stack
-      direction="row"
-      role="group"
-      p="2"
-      spacing="1"
-      textDecoration={item.isCompleted ? 'line-through' : 'none'}
-      color={item.isCompleted ? 'gray.500' : 'black'}
-      _hover={{ bg: 'gray.100' }}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.75, height: 0 }}
+      animate={{ opacity: 1, scale: 1, height: 'auto' }}
+      exit={{ opacity: 0, scale: 0.01, height: 0 }}
     >
-      <Checkbox
-        isChecked={item.isCompleted}
-        onChange={(event) => onSetCompleted(item.id, event.target.checked)}
+      <Stack
+        direction="row"
+        role="group"
+        p="2"
+        spacing="1"
+        textDecoration={item.isCompleted ? 'line-through' : 'none'}
+        color={item.isCompleted ? 'gray.500' : 'black'}
+        _hover={{ bg: 'gray.100' }}
       >
-        {item.name}
-      </Checkbox>
-      <Spacer />
-      <IconButton
-        icon={<DeleteIcon />}
-        colorScheme="red"
-        size="sm"
-        visibility="hidden"
-        _groupHover={{ visibility: 'visible' }}
-        onClick={() => onDelete(item.id)}
-      />
-    </Stack>
+        <Checkbox
+          isChecked={item.isCompleted}
+          onChange={(event) => onSetCompleted(item.id, event.target.checked)}
+        >
+          {item.name}
+        </Checkbox>
+        <Spacer />
+        <IconButton
+          icon={<DeleteIcon />}
+          colorScheme="red"
+          size="sm"
+          visibility="hidden"
+          _groupHover={{ visibility: 'visible' }}
+          onClick={() => onDelete(item.id)}
+        />
+      </Stack>
+    </motion.div>
   );
-}
+});

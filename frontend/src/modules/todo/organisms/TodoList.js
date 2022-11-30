@@ -1,8 +1,14 @@
+import { AnimatePresence } from 'framer-motion';
+import { memo } from 'react';
 import { Box } from 'src/shared/design-system';
 
 import { TodoListItem } from '../molecules';
 
-export function TodoList({ items, onSetCompleted, onDelete }) {
+export const TodoList = memo(function TodoList({
+  items,
+  onSetCompleted,
+  onDelete,
+}) {
   return (
     <Box
       border="1px"
@@ -10,14 +16,16 @@ export function TodoList({ items, onSetCompleted, onDelete }) {
       borderRadius="md"
       overflow="hidden"
     >
-      {items.map((item) => (
-        <TodoListItem
-          key={item.id}
-          item={item}
-          onSetCompleted={onSetCompleted}
-          onDelete={onDelete}
-        />
-      ))}
+      <AnimatePresence initial={false}>
+        {items.map((item) => (
+          <TodoListItem
+            key={item.id}
+            item={item}
+            onSetCompleted={onSetCompleted}
+            onDelete={onDelete}
+          />
+        ))}
+      </AnimatePresence>
     </Box>
   );
-}
+});

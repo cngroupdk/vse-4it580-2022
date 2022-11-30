@@ -1,7 +1,10 @@
-import { useState } from 'react';
+import { useMemo } from 'react';
+import create from 'zustand';
+import { persist } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
 
 const initialItems = [
-  ...Array(100)
+  ...Array(10)
     .fill(null)
     .map((_, index) => ({
       id: index,
@@ -10,67 +13,68 @@ const initialItems = [
     })),
 ];
 
-export function useTodoList() {
-  const [{ items: rawItems, filter }, setState] = useState({
-    filter: 'all',
-    items: initialItems,
-    nextId: initialItems.length + 1,
-  });
+const useTodoListStore = create(
+  persist(
+    immer((set) => ({
+      filter: 'all',
+      items: initialItems,
+      nextId: initialItems.length + 1,
 
-  const addItem = (name) => {
-    setState((prevState) => {
-      const { nextId } = prevState;
-
-      const newItem = {
-        id: nextId,
-        name,
-        isCompleted: false,
-      };
-
-      return {
-        ...prevState,
-        items: [newItem, ...prevState.items],
-        nextId: nextId + 1,
-      };
-    });
-  };
-
-  const setItemCompleted = (id, isCompleted) => {
-    setState((prevState) => {
-      return {
-        ...prevState,
-        items: prevState.items.map((item) => {
-          if (item.id !== id) return item;
-
-          return {
-            ...item,
-            isCompleted,
+      addItem: (name) => {
+        set((draft) => {
+          const newItem = {
+            id: draft.nextId++,
+            name,
+            isCompleted: false,
           };
-        }),
-      };
-    });
-  };
 
-  const deleteItem = (id) => {
-    setState((prevState) => ({
-      ...prevState,
-      items: prevState.items.filter((item) => item.id !== id),
-    }));
-  };
+          draft.items.unshift(newItem);
+        });
+      },
 
-  const setFilter = (filter) => {
-    setState((prevState) => ({
-      ...prevState,
-      filter,
-    }));
-  };
+      setItemCompleted: (id, isCompleted) => {
+        set((draft) => {
+          const item = draft.items.find((item) => item.id === id);
+          if (!item) return;
 
-  const items =
-    filter === 'all'
-      ? rawItems
-      : rawItems.filter(
-          (item) => item.isCompleted === (filter === 'completed'),
-        );
+          item.isCompleted = isCompleted;
+        });
+      },
+
+      deleteItem: (id) => {
+        set((prevState) => ({
+          ...prevState,
+          items: prevState.items.filter((item) => item.id !== id),
+        }));
+      },
+
+      setFilter: (filter) => {
+        set({ filter });
+      },
+    })),
+    { name: 'global-todo-list' },
+  ),
+);
+
+export function useTodoList() {
+  const {
+    items: rawItems,
+    filter,
+    addItem,
+    setFilter,
+    setItemCompleted,
+    deleteItem,
+  } = useTodoListStore();
+
+  const items = useMemo(
+    () =>
+      filter === 'all'
+        ? rawItems
+        : rawItems.filter(
+            (item) => item.isCompleted === (filter === 'completed'),
+          ),
+    [rawItems, filter],
+  );
 
   return {
     filter,
