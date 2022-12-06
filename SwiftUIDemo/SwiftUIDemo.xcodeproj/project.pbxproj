@@ -11,6 +11,7 @@
 		28AD4A8C293F8A17004D756F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AD4A8B293F8A17004D756F /* ContentView.swift */; };
 		28AD4A8E293F8A19004D756F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28AD4A8D293F8A19004D756F /* Assets.xcassets */; };
 		28AD4A92293F8A19004D756F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28AD4A91293F8A19004D756F /* Preview Assets.xcassets */; };
+		28AD4A9B293FA3F0004D756F /* ListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AD4A9A293FA3F0004D756F /* ListItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		28AD4A8D293F8A19004D756F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		28AD4A8F293F8A19004D756F /* SwiftUIDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftUIDemo.entitlements; sourceTree = "<group>"; };
 		28AD4A91293F8A19004D756F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		28AD4A9A293FA3F0004D756F /* ListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			children = (
 				28AD4A89293F8A17004D756F /* SwiftUIDemoApp.swift */,
 				28AD4A8B293F8A17004D756F /* ContentView.swift */,
+				28AD4A9A293FA3F0004D756F /* ListItemView.swift */,
 				28AD4A8D293F8A19004D756F /* Assets.xcassets */,
 				28AD4A8F293F8A19004D756F /* SwiftUIDemo.entitlements */,
 				28AD4A90293F8A19004D756F /* Preview Content */,
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28AD4A9B293FA3F0004D756F /* ListItemView.swift in Sources */,
 				28AD4A8C293F8A17004D756F /* ContentView.swift in Sources */,
 				28AD4A8A293F8A17004D756F /* SwiftUIDemoApp.swift in Sources */,
 			);
